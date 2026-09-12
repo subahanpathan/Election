@@ -1,0 +1,699 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: Student Leader Election 2026 API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: candidates
+    description: Candidate management
+  - name: students
+    description: Student management
+  - name: votes
+    description: Voting operations
+  - name: results
+    description: Election results
+  - name: election
+    description: Election settings
+  - name: auth
+    description: Authentication operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /candidates:
+    get:
+      operationId: getCandidates
+      tags: [candidates]
+      summary: List all candidates
+      responses:
+        "200":
+          description: List of candidates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Candidate"
+    post:
+      operationId: createCandidate
+      tags: [candidates]
+      summary: Create a candidate (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CandidateInput"
+      responses:
+        "201":
+          description: Candidate created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Candidate"
+
+  /candidates/{id}:
+    get:
+      operationId: getCandidate
+      tags: [candidates]
+      summary: Get a candidate by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Candidate details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Candidate"
+    patch:
+      operationId: updateCandidate
+      tags: [candidates]
+      summary: Update a candidate (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CandidateUpdate"
+      responses:
+        "200":
+          description: Candidate updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Candidate"
+    delete:
+      operationId: deleteCandidate
+      tags: [candidates]
+      summary: Delete a candidate (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /students:
+    get:
+      operationId: getStudents
+      tags: [students]
+      summary: List all students (admin)
+      responses:
+        "200":
+          description: List of students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Student"
+    post:
+      operationId: createStudent
+      tags: [students]
+      summary: Create a student (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudentInput"
+      responses:
+        "201":
+          description: Student created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Student"
+
+  /students/{id}:
+    patch:
+      operationId: updateStudent
+      tags: [students]
+      summary: Update a student (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudentUpdate"
+      responses:
+        "200":
+          description: Student updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Student"
+    delete:
+      operationId: deleteStudent
+      tags: [students]
+      summary: Delete a student (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /auth/student/login:
+    post:
+      operationId: studentLogin
+      tags: [auth]
+      summary: Log in as a student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StudentLoginInput"
+      responses:
+        "200":
+          description: Student session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentSession"
+        "401":
+          description: Invalid credentials
+
+  /auth/student/logout:
+    post:
+      operationId: studentLogout
+      tags: [auth]
+      summary: Log out the current student
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogoutResult"
+
+  /auth/student/me:
+    get:
+      operationId: getStudentSession
+      tags: [auth]
+      summary: Get the current student session
+      responses:
+        "200":
+          description: Current student session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentSession"
+        "401":
+          description: Not authenticated
+
+  /auth/admin/login:
+    post:
+      operationId: adminLogin
+      tags: [auth]
+      summary: Log in as an administrator
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminLoginInput"
+      responses:
+        "200":
+          description: Admin session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSession"
+        "401":
+          description: Invalid credentials
+
+  /auth/admin/logout:
+    post:
+      operationId: adminLogout
+      tags: [auth]
+      summary: Log out the current administrator
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogoutResult"
+
+  /auth/admin/me:
+    get:
+      operationId: getAdminSession
+      tags: [auth]
+      summary: Get the current admin session
+      responses:
+        "200":
+          description: Current admin session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSession"
+        "401":
+          description: Not authenticated
+
+  /votes:
+    post:
+      operationId: castVote
+      tags: [votes]
+      summary: Cast a vote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VoteInput"
+      responses:
+        "201":
+          description: Vote cast successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VoteResult"
+        "409":
+          description: Already voted
+
+  /votes/check/{studentId}:
+    get:
+      operationId: checkVoteStatus
+      tags: [votes]
+      summary: Check if student has voted
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Vote status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VoteStatus"
+
+  /results:
+    get:
+      operationId: getResults
+      tags: [results]
+      summary: Get live election results with vote counts
+      responses:
+        "200":
+          description: Election results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ElectionResults"
+
+  /results/summary:
+    get:
+      operationId: getResultsSummary
+      tags: [results]
+      summary: Get high-level election stats and turnout
+      responses:
+        "200":
+          description: Results summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResultsSummary"
+
+  /election:
+    get:
+      operationId: getElectionSettings
+      tags: [election]
+      summary: Get current election settings
+      responses:
+        "200":
+          description: Election settings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ElectionSettings"
+    patch:
+      operationId: updateElectionSettings
+      tags: [election]
+      summary: Update election settings (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ElectionSettingsUpdate"
+      responses:
+        "200":
+          description: Settings updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ElectionSettings"
+
+  /election/reset:
+    post:
+      operationId: resetElection
+      tags: [election]
+      summary: Reset all votes (admin)
+      responses:
+        "200":
+          description: Election reset
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResetResult"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required: [status]
+
+    Candidate:
+      type: object
+      required: [id, name, role, className, photoUrl, bio, promises, voteCount]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        role:
+          type: string
+          enum: [head_boy, head_girl]
+        className:
+          type: string
+        photoUrl:
+          type: string
+        bio:
+          type: string
+        promises:
+          type: array
+          items:
+            type: string
+        voteCount:
+          type: integer
+        color:
+          type: ["string", "null"]
+
+    CandidateInput:
+      type: object
+      required: [name, role, className, bio, promises]
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+          enum: [head_boy, head_girl]
+        className:
+          type: string
+        photoUrl:
+          type: string
+        bio:
+          type: string
+        promises:
+          type: array
+          items:
+            type: string
+        color:
+          type: string
+
+    CandidateUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        role:
+          type: string
+          enum: [head_boy, head_girl]
+        className:
+          type: string
+        photoUrl:
+          type: string
+        bio:
+          type: string
+        promises:
+          type: array
+          items:
+            type: string
+        color:
+          type: string
+
+    Student:
+      type: object
+      required: [id, studentId, name, className]
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: string
+        name:
+          type: string
+        className:
+          type: string
+        hasVoted:
+          type: boolean
+        votedAt:
+          type: ["string", "null"]
+
+    StudentInput:
+      type: object
+      required: [studentId, name, className]
+      properties:
+        studentId:
+          type: string
+        name:
+          type: string
+        className:
+          type: string
+        password:
+          type: string
+
+    StudentUpdate:
+      type: object
+      properties:
+        studentId:
+          type: string
+        name:
+          type: string
+        className:
+          type: string
+        password:
+          type: string
+
+    StudentLoginInput:
+      type: object
+      required: [studentId, password]
+      properties:
+        studentId:
+          type: string
+        password:
+          type: string
+
+    StudentSession:
+      type: object
+      required: [id, studentId, name, className, hasVoted]
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: string
+        name:
+          type: string
+        className:
+          type: string
+        hasVoted:
+          type: boolean
+        votedAt:
+          type: ["string", "null"]
+
+    AdminLoginInput:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    AdminSession:
+      type: object
+      required: [id, username, name]
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        name:
+          type: string
+
+    LogoutResult:
+      type: object
+      required: [success, message]
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+
+    VoteInput:
+      type: object
+      required: [studentId, headBoyCandidateId, headGirlCandidateId]
+      properties:
+        studentId:
+          type: integer
+        headBoyCandidateId:
+          type: integer
+        headGirlCandidateId:
+          type: integer
+
+    VoteResult:
+      type: object
+      required: [success, message]
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+
+    VoteStatus:
+      type: object
+      required: [hasVoted]
+      properties:
+        hasVoted:
+          type: boolean
+        votedAt:
+          type: ["string", "null"]
+
+    CandidateResult:
+      type: object
+      required: [candidate, voteCount, percentage]
+      properties:
+        candidate:
+          $ref: "#/components/schemas/Candidate"
+        voteCount:
+          type: integer
+        percentage:
+          type: number
+
+    ElectionResults:
+      type: object
+      required: [headBoy, headGirl, totalVotes, isFinalized]
+      properties:
+        headBoy:
+          type: array
+          items:
+            $ref: "#/components/schemas/CandidateResult"
+        headGirl:
+          type: array
+          items:
+            $ref: "#/components/schemas/CandidateResult"
+        totalVotes:
+          type: integer
+        isFinalized:
+          type: boolean
+        winner:
+          $ref: "#/components/schemas/Winners"
+
+    Winners:
+      type: object
+      properties:
+        headBoy:
+          $ref: "#/components/schemas/Candidate"
+        headGirl:
+          $ref: "#/components/schemas/Candidate"
+
+    ResultsSummary:
+      type: object
+      required: [totalStudents, totalVoted, turnoutPercentage, isVotingOpen, electionName]
+      properties:
+        totalStudents:
+          type: integer
+        totalVoted:
+          type: integer
+        turnoutPercentage:
+          type: number
+        isVotingOpen:
+          type: boolean
+        electionName:
+          type: string
+        electionEndDate:
+          type: ["string", "null"]
+
+    ElectionSettings:
+      type: object
+      required: [id, electionName, isVotingOpen, electionEndDate]
+      properties:
+        id:
+          type: integer
+        electionName:
+          type: string
+        isVotingOpen:
+          type: boolean
+        electionEndDate:
+          type: ["string", "null"]
+        schoolName:
+          type: string
+        welcomeMessage:
+          type: string
+
+    ElectionSettingsUpdate:
+      type: object
+      properties:
+        electionName:
+          type: string
+        isVotingOpen:
+          type: boolean
+        electionEndDate:
+          type: ["string", "null"]
+        schoolName:
+          type: string
+        welcomeMessage:
+          type: string
+
+    ResetResult:
+      type: object
+      required: [success, message]
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
