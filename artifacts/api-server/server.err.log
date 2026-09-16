@@ -1,0 +1,14 @@
+D:\Election\lib\db\src\index.ts:8
+  throw new Error(
+        ^
+
+
+Error: DATABASE_URL must be set. Did you forget to provision a database?
+    at ../../lib/db/src/index.ts (D:\Election\lib\db\src\index.ts:8:9)
+    at __init (file:///D:/Election/artifacts/api-server/dist/index.mjs:15:56)
+    at <anonymous> (D:\Election\artifacts\api-server\src\routes\auth.ts:3:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v20.20.2

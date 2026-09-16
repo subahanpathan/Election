@@ -1,0 +1,22 @@
+
+> @workspace/api-server@0.0.0 start D:\Election\artifacts\api-server
+> node --enable-source-maps ./dist/index.mjs
+
+{"level":30,"time":1789534469398,"pid":5172,"hostname":"LAPTOP-R020C6T0","port":3000,"msg":"Server listening"}
+{"level":30,"time":1789534779539,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":1,"method":"GET","url":"/api/healthz"},"res":{"statusCode":200},"responseTime":14,"msg":"request completed"}
+{"level":30,"time":1789534795648,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":2,"method":"GET","url":"/api/election/settings"},"res":{"statusCode":404},"responseTime":5,"msg":"request completed"}
+{"level":30,"time":1789534821622,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":3,"method":"GET","url":"/api/election"},"res":{"statusCode":200},"responseTime":184,"msg":"request completed"}
+{"level":30,"time":1789534822593,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":4,"method":"GET","url":"/api/results"},"res":{"statusCode":200},"responseTime":14,"msg":"request completed"}
+{"level":30,"time":1789535147308,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":5,"method":"GET","url":"/api/healthz"},"res":{"statusCode":200},"responseTime":2,"msg":"request completed"}
+{"level":30,"time":1789535147380,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":6,"method":"GET","url":"/api/healthz"},"res":{"statusCode":200},"responseTime":2,"msg":"request completed"}
+{"level":30,"time":1789535197597,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":7,"method":"GET","url":"/api/healthz"},"res":{"statusCode":200},"responseTime":1,"msg":"request completed"}
+{"level":30,"time":1789535345775,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":8,"method":"GET","url":"/api/healthz"},"res":{"statusCode":200},"responseTime":3,"msg":"request completed"}
+{"level":30,"time":1789535403188,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":9,"method":"GET","url":"/api/election"},"res":{"statusCode":200},"responseTime":222,"msg":"request completed"}
+{"level":30,"time":1789535403360,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":10,"method":"GET","url":"/api/results/summary"},"res":{"statusCode":200},"responseTime":385,"msg":"request completed"}
+{"level":30,"time":1789535403515,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":11,"method":"GET","url":"/api/candidates"},"res":{"statusCode":200},"responseTime":535,"msg":"request completed"}
+{"level":30,"time":1789535429164,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":12,"method":"GET","url":"/api/election"},"res":{"statusCode":304},"responseTime":239,"msg":"request completed"}
+{"level":30,"time":1789535429367,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":13,"method":"GET","url":"/api/results/summary"},"res":{"statusCode":304},"responseTime":337,"msg":"request completed"}
+{"level":30,"time":1789535429543,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":14,"method":"GET","url":"/api/candidates"},"res":{"statusCode":304},"responseTime":503,"msg":"request completed"}
+{"level":30,"time":1789535439012,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":15,"method":"GET","url":"/api/election"},"res":{"statusCode":304},"responseTime":4,"msg":"request completed"}
+{"level":30,"time":1789535439043,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":17,"method":"GET","url":"/api/candidates"},"res":{"statusCode":304},"responseTime":6,"msg":"request completed"}
+{"level":30,"time":1789535439049,"pid":5172,"hostname":"LAPTOP-R020C6T0","req":{"id":16,"method":"GET","url":"/api/results/summary"},"res":{"statusCode":304},"responseTime":16,"msg":"request completed"}
