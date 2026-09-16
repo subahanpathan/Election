@@ -7,3 +7,30 @@ Error: connect ECONNREFUSED 127.0.0.1:3000
 [2m10:49:16 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/candidates[39m
 Error: connect ECONNREFUSED 127.0.0.1:3000
     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:10:55 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/election[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:10:55 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/results/summary[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:10:55 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/candidates[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:11:18 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/election[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:11:18 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/results/summary[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:11:18 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/candidates[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:11:45 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/election[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:11:45 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/results/summary[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m11:11:45 am[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/candidates[39m
+Error: connect ECONNREFUSED 127.0.0.1:3000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
